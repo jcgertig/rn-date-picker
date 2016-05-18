@@ -18,7 +18,7 @@ const PopupDatePicker = React.createClass({
     onPickerChange: PropTypes.func,
     styles: PropTypes.object
   },
-  getDefaultProps() { 
+  getDefaultProps() {
     return {
       okText: 'Ok',
       dismissText: 'Dismiss',
@@ -31,28 +31,39 @@ const PopupDatePicker = React.createClass({
     };
   },
   getInitialState() {
-    return {};
+    return {
+      changed: false,
+      date: this.props.date,
+    };
   },
   componentWillReceiveProps({visible, date}) {
+    let state = {};
     if (this.props.visible !== visible) {
+      state.changed = false;
       this.props.onVisibleChange(visible);
     }
     if (this.state.date !== date) {
-      this.setState({ date: date });
+      state.date = date;
     }
-  },  
+    if (Object.keys(state) > 0) {
+      this.setState(state);
+    }
+  },
   onChange() {
-    this.props.onChange(this.state.date);
-    this.setState({date: this.props.date});
+    if (this.state.changed) {
+      this.props.onChange(this.state.date);
+    } else {
+      this.onDismiss();
+    }
   },
   onPickerChange(date) {
-    this.setState({date});
+    this.setState({changed: true, date});
     this.props.onPickerChange(date);
   },
   onDismiss() {
     if (this.props.visible) {
       this.props.onDismiss();
-      this.setState({date: this.props.date});
+      this.setState({ changed: false, date: this.props.date });
     }
   },
   render() {
@@ -72,7 +83,7 @@ const PopupDatePicker = React.createClass({
             </TouchableOpacity>
           </View>
           <DatePicker
-            key={props.mode + '-' + state.date}
+            key={props.keyName}
             defaultDate={props.defaultDate}
             date={state.date}
             mode={props.mode}
