@@ -71,7 +71,7 @@ const PopupDatePicker = React.createClass({
             </TouchableOpacity>
           </View>
           <DatePicker
-            key={mode + '-' + state.date}
+            key={props.mode + '-' + state.date}
             defaultDate={props.defaultDate}
             date={state.date}
             mode={props.mode}
