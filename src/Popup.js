@@ -33,9 +33,12 @@ const PopupDatePicker = React.createClass({
   getInitialState() {
     return {};
   },
-  componentWillReceiveProps({visible}) {
+  componentWillReceiveProps({visible, date}) {
     if (this.props.visible !== visible) {
       this.props.onVisibleChange(visible);
+    }
+    if (this.state.date !== date) {
+      this.setState({ date });
     }
   },  
   onChange() {
