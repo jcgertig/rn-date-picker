@@ -37,13 +37,13 @@ const PopupDatePicker = React.createClass({
     if (this.props.visible !== visible) {
       this.props.onVisibleChange(visible);
     }
-    console.log('dateDiff?', this.state.date !== date);
     if (this.state.date !== date) {
       this.setState({ date: date });
     }
   },  
   onChange() {
     this.props.onChange(this.state.date);
+    this.setState({date: this.props.date});
   },
   onPickerChange(date) {
     this.setState({date});
@@ -52,6 +52,7 @@ const PopupDatePicker = React.createClass({
   onDismiss() {
     if (this.props.visible) {
       this.props.onDismiss();
+      this.setState({date: this.props.date});
     }
   },
   render() {
