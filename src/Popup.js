@@ -37,8 +37,9 @@ const PopupDatePicker = React.createClass({
     if (this.props.visible !== visible) {
       this.props.onVisibleChange(visible);
     }
+    console.log('dateDiff?', this.state.date !== date);
     if (this.state.date !== date) {
-      this.setState({ date });
+      this.setState({ date: date });
     }
   },  
   onChange() {
@@ -57,7 +58,8 @@ const PopupDatePicker = React.createClass({
     const state = this.state;
     const props = this.props;
     const customStyle = StyleSheet.create(props.styles);
-    return (<Modal visible={props.visible} onDismiss={this.onDismiss}>
+    return (
+      <Modal visible={props.visible} onDismiss={this.onDismiss}>
         <View style={[styles.container, customStyle.container]}>
           <View style={[styles.toolbar, customStyle.toolbar]}>
             <TouchableOpacity style={[styles.button, customStyle.button]} activeOpacity={1} onPress={()=>this.onDismiss()}>
@@ -69,6 +71,7 @@ const PopupDatePicker = React.createClass({
             </TouchableOpacity>
           </View>
           <DatePicker
+            key={mode + '-' + state.date}
             defaultDate={props.defaultDate}
             date={state.date}
             mode={props.mode}
@@ -76,9 +79,11 @@ const PopupDatePicker = React.createClass({
             minDate={props.minDate}
             maxDate={props.maxDate}
             minuteInterval={props.minuteInterval}
-            timeZoneOffsetInMinutes={props.timeZoneOffsetInMinutes} />
+            timeZoneOffsetInMinutes={props.timeZoneOffsetInMinutes}
+          />
         </View>
-      </Modal>);
+      </Modal>
+    );
   }
 });
 
