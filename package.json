@@ -31,9 +31,6 @@
     "pub": "rn-tools run pub",
     "lint": "rn-tools run lint"
   },
-  "dependencies": {
-    "rn-modal": "~0.1.0"
-  },
   "devDependencies": {
     "rc-server": "^3.3.4",
     "rmc-react-native": "~0.2.0",
