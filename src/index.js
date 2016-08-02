@@ -1,6 +1,7 @@
 'use strict';
 
-import React, { PropTypes, DatePickerIOS } from 'react-native';
+import React, { PropTypes } from 'react';
+import { DatePickerIOS } from 'react-native';
 
 const noop = () => {};
 

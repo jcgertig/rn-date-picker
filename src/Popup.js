@@ -1,7 +1,8 @@
 'use strict';
 
-import React, { PropTypes, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import Modal from 'rn-modal';
+import React, { PropTypes } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import Modal from './modal';
 import DatePicker from './index';
 
 const noop = () => {};

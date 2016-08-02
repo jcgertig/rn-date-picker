@@ -1,6 +1,7 @@
 'use strict';
 
-import React, { AppRegistry, View, StyleSheet, TouchableHighlight, Text } from 'react-native';
+import React from 'react';
+import { AppRegistry, View, StyleSheet, TouchableHighlight, Text } from 'react-native';
 import PopupDatePicker from 'rn-date-picker/src/Popup';
 import Format from './libs/format';
 
